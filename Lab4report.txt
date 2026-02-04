@@ -1,0 +1,55 @@
+1. Introduction
+In this lab, we reorganized the structure of our machine-learning framework by making Dataset an abstract class, 
+adding two concrete dataset types, and implementing two learning algorithms: Gradient Descent (GD) and Stochastic Gradient Descent (SGD).
+The main goal was to separate data representation from the training process.
+
+
+
+2. Dataset Hierarchy
+Dataset is now abstract and defines the methods:
+transform(Record r) – prepares a record for internal training.
+output(double yHat) – converts an internal prediction back to real scale.
+Two subclasses implement this behavior:
+RawDataset
+Returns data unchanged.
+transform() returns the same record.
+output() returns the value as-is.
+StandardizedDataset
+Computes mean and standard deviation.
+transform() normalizes the input and output.
+output() de-normalizes predictions.
+This design allows the same algorithms to work with raw or standardized data.
+
+
+
+
+3. Model
+The model stores the parameter vector θ and uses an augmented input vector [1, x1, x2, ...] to compute predictions.
+The update rule θ = θ - α * gradient remains the same as in Lab 3.
+
+
+
+4. Algorithms
+Algorithm is now abstract and only stores the learning rate.
+Two concrete algorithms were implemented:
+Gradient Descent (GD)
+Computes the full gradient using all records.
+Stops early when the gradient norm becomes very small.
+Stochastic Gradient Descent (SGD)
+Uses a random minibatch of records on each iteration.
+Runs for a fixed number of iterations.
+Faster but produces noisier updates.
+
+
+5. Supervised Learner
+predict(x) now performs three steps:
+Transform the input using dataset.transform().
+Predict in the model’s internal space.
+Convert the output back to real scale using dataset.output().
+This ensures correct predictions even when training on standardized data.
+
+
+6. Conclusion
+Lab 4 improves modularity by introducing abstract datasets and algorithms.
+The separation between data transformation, model prediction, and optimization makes the system easier to extend and maintain.
+Both GD and SGD were successfully integrated into the framework, completing the transition to a more flexible ML architecture.
