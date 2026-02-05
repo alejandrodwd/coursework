@@ -10,3 +10,6 @@ I counted them all by hand, but here is a rough visual reconstruction of the boo
 I used some styling to color code the cities by continent, and this is the final result:
 
 ![network](flightnetwork.png)
+
+It turned out pretty cool and ultimately, this is what the world looks like to me. This is in essence, the first graphical representation I have seen of “my world”.
+It’s certainly skewed in this aspect though, because for example, I’ve never even been outside the Istanbul airport. But it is definitely an interesting visualisation nevertheless.
